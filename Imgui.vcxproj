@@ -141,6 +141,9 @@
   <ItemGroup>
     <ClCompile Include="Imgui.cpp" />
   </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Tilemap.h" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
