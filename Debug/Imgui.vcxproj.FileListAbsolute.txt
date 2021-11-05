@@ -1,0 +1,11 @@
+C:\Users\mrspe\Imgui\Debug\Imgui.vcxproj.CopyComplete
+C:\Users\mrspe\Imgui\Debug\Imgui.exe
+C:\Users\mrspe\Imgui\Debug\sfml-graphics-d-2.dll
+C:\Users\mrspe\Imgui\Debug\sfml-window-d-2.dll
+C:\Users\mrspe\Imgui\Debug\sfml-system-d-2.dll
+C:\Users\mrspe\Imgui\Debug\freetyped.dll
+C:\Users\mrspe\Imgui\Debug\zlibd1.dll
+C:\Users\mrspe\Imgui\Debug\bz2d.dll
+C:\Users\mrspe\Imgui\Debug\libpng16d.dll
+C:\Users\mrspe\Imgui\Debug\brotlidec.dll
+C:\Users\mrspe\Imgui\Debug\brotlicommon.dll
