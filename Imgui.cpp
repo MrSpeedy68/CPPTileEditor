@@ -51,6 +51,10 @@ namespace Maps
 };
 
 int main() {
+
+    int tileValue = 0;
+    char tileChar = 0;
+
     ifstream inJson;
 
     inJson.open("MapLevel.json"); //open file make stream
@@ -60,8 +64,8 @@ int main() {
     inJson >> jsonMap;
 
     Maps::Map levelMap = Maps::Load(jsonMap);
-
-    sf::RenderWindow window(sf::VideoMode(levelMap.tileDimensions_x * levelMap.width, levelMap.tileDimensions_y * levelMap.height), "ImGui + SFML = <3"); //Make renderview size of tileset
+    //levelMap.tileDimensions_x * levelMap.width, levelMap.tileDimensions_y * levelMap.height
+    sf::RenderWindow window(sf::VideoMode(1080,720), "ImGui + SFML = <3"); //Make renderview size of tileset
     window.setFramerateLimit(60);
     ImGui::SFML::Init(window);
 
@@ -89,13 +93,41 @@ int main() {
 
             cout << mousePosition.x / levelMap.tileDimensions_x << " , " << mousePosition.y / levelMap.tileDimensions_y << endl;
 
-            tileMap.changeTileValue(sf::Vector2i(mousePosition.x / levelMap.tileDimensions_x, mousePosition.y / levelMap.tileDimensions_y), 2);
+            tileMap.changeTileValue(sf::Vector2i(mousePosition.x / levelMap.tileDimensions_x, mousePosition.y / levelMap.tileDimensions_y), tileValue);
         }
 
         ImGui::SFML::Update(window, deltaClock.restart());
 
-        ImGui::Begin("Hello, world!");
-        ImGui::Button("Look at this pretty button");
+        ImGui::Begin("Sprite Manager");
+        if (ImGui::Button("Tile 1"))
+            tileValue = 0;
+
+        if (ImGui::Button("Tile 2"))
+            tileValue = 1;
+
+        if (ImGui::Button("Tile 3"))
+            tileValue = 2;
+
+        if (ImGui::Button("Tile 4"))
+            tileValue = 3;
+
+
+        if (ImGui::Button("Save Map"))
+        {
+            //Save
+            ofstream outJson;
+
+            outJson.open("MapLevel.json"); //open file make stream
+
+            json outJsonMap = Maps::Save(levelMap);
+
+            outJson << outJsonMap;
+
+            outJson.close();
+
+            cout << "Map Saved";
+        }
+
         ImGui::End();
 
         window.clear();
@@ -106,16 +138,7 @@ int main() {
         ImGui::SFML::Render(window);
         window.display();
     }
-    //Save
-    ofstream outJson;
 
-    outJson.open("MapLevel.json"); //open file make stream
-
-    json outJsonMap = Maps::Save(levelMap);
-
-    outJson << outJsonMap;
-
-    outJson.close();
 
     ImGui::SFML::Shutdown();
 }

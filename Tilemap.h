@@ -32,6 +32,7 @@ public:
 
     }
 
+
     void reDrawTexture()
     {
         // populate the vertex array, with one quad per tile
