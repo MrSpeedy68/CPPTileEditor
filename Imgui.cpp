@@ -53,7 +53,6 @@ namespace Maps
 int main() {
 
     int tileValue = 0;
-    char tileChar = 0;
 
     ifstream inJson;
 
@@ -68,9 +67,6 @@ int main() {
     sf::RenderWindow window(sf::VideoMode(1080,720), "ImGui + SFML = <3"); //Make renderview size of tileset
     window.setFramerateLimit(60);
     ImGui::SFML::Init(window);
-
-    sf::CircleShape shape(100.f);
-    shape.setFillColor(sf::Color::Green);
 
     TileMap tileMap(sf::Vector2u(levelMap.tileDimensions_x, levelMap.tileDimensions_y), levelMap.tileSet, levelMap.width, levelMap.height);
 
@@ -111,6 +107,39 @@ int main() {
         if (ImGui::Button("Tile 4"))
             tileValue = 3;
 
+        ImGui::Text("New Map");
+
+        static int x_val = 16;
+        ImGui::InputInt("Input X", &x_val);
+
+        static int y_val = 16;
+        ImGui::InputInt("Input Y", &y_val);
+
+        if (ImGui::Button("Create New Map"))
+        {
+            cout << "New Map Created";
+
+            vector<int> newTileSet;
+
+            int totalNewSet = x_val * y_val;
+
+            for (int i = 0; i < totalNewSet; i++) {
+                newTileSet.push_back(0);
+            }
+
+            //for (int i = 0; i < levelMap.tileSet.size(); i++) {
+            //    cout << " " << levelMap.tileSet.at(i);
+            //}
+
+            TileMap tileMapNew(sf::Vector2u(levelMap.tileDimensions_x, levelMap.tileDimensions_y), newTileSet, x_val, y_val);
+
+            tileMap = tileMapNew;
+
+            tileMap.load("tileset.png");
+
+            //cout << endl << "Width: " << levelMap.width << " Height: " << levelMap.height;
+        }
+
 
         if (ImGui::Button("Save Map"))
         {
@@ -131,7 +160,6 @@ int main() {
         ImGui::End();
 
         window.clear();
-        window.draw(shape);
 
         window.draw(tileMap);
 
